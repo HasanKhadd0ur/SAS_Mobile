@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(height: 16),
             Text('SAS', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
-            Text('Situational Awareness'),
+            Text('Situation Awareness'),
           ],
         ),
       ),
