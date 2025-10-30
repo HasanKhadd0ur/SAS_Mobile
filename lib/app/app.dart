@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sas_mobile/core/config/config.dart';
+import 'package:sas_mobile/shared/screens/about.dart';
+import 'package:sas_mobile/shared/screens/faq.dart';
 import 'package:sas_mobile/shared/screens/splash_screen.dart';
 import '../core/theme/app_theme.dart';
 import '../features/events/presentation/screens/daily_events_screen.dart';
@@ -28,6 +30,8 @@ class SasApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(eventRepository: eventRepo),
         '/home': (context) => DailyEventsScreen(eventRepository: eventRepo),
+        '/about': (context) => AboutScreen(),
+        '/faq': (context) => FaqScreen(),
       },
     );
   }
