@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -10,6 +11,7 @@ class AboutScreen extends StatelessWidget {
         title: const Text('About SAS'),
         backgroundColor: Colors.blue.shade900,
       ),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
         child: Column(
