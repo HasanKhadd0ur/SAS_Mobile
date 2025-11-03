@@ -42,7 +42,7 @@ dependencies:
   json_serializable: ^6.8.0
   flutter_map: ^8.2.2
   latlong2: ^0.9.1
-
+  fluttertoast: ^8.2.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +67,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/images/no_events.svg
     - assets/logo/sas-logo.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:
