@@ -57,6 +57,8 @@ Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
 };
 
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
+  city: json['city'] as String?,
+  country: json['country'] as String?,
   latitude: (json['latitude'] as num).toDouble(),
   longitude: (json['longitude'] as num).toDouble(),
   regionName: json['regionName'] as String?,
@@ -66,4 +68,6 @@ Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
   'latitude': instance.latitude,
   'longitude': instance.longitude,
   'regionName': instance.regionName,
+  'city': instance.city,
+  'country': instance.country,
 };

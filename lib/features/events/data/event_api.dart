@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../../../core/network/dio_client.dart';
 import '../domain/models/event.dart';
 
@@ -8,25 +10,25 @@ class EventApi {
 
   Future<List<Event>> getEventsUpdatedAfter({
     required DateTime lastUpdate,
-    required int pageNumber,
-    required int pageSize,
+    int? pageNumber,
+    int? pageSize,
   }) async {
     final formattedTime = lastUpdate.toUtc().toIso8601String();
 
     try {
-      log('[EventApi] Fetching events updated after: $formattedTime');
-      log('[EventApi] Page: $pageNumber | Size: $pageSize');
+
+
+      final queryParams = {
+        'lastUpdated': formattedTime,
+        if (pageNumber != null) 'pageNumber': pageNumber,
+        if (pageSize != null) 'pageSize': pageSize,
+      };
 
       final response = await client.dio.get(
         '/events/updated-after',
-        queryParameters: {
-          'lastUpdated': formattedTime,
-          'pageNumber': pageNumber,
-          'pageSize': pageSize,
-        },
+        queryParameters:queryParams
       );
 
-      log('[EventApi] Response type: ${response.data.runtimeType}');
       final data = response.data;
 
       if (data is List) {
@@ -46,7 +48,15 @@ class EventApi {
     } catch (e, stack) {
       log('[EventApi] Error fetching events: $e');
       log('[EventApi] Stack trace:\n$stack');
-      rethrow;
+
+      Fluttertoast.showToast(
+        msg: "Failed to fetch events. Please check your connection.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+
+      // Return empty list instead of crashing
+      return [];
     }
   }
 
@@ -57,7 +67,15 @@ class EventApi {
     } catch (e, stack) {
       log('[EventApi] Error fetching event by id: $e');
       log('[EventApi] Stack trace:\n$stack');
-      rethrow;
+      
+      
+      Fluttertoast.showToast(
+        msg: "Failed to fetch event details.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+
+          rethrow;
     }
   }
 }
