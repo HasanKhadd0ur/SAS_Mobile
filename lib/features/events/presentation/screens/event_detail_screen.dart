@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 import '../../domain/models/event.dart';
 
 class EventDetailScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class EventDetailScreen extends StatelessWidget {
     final info = event.eventInfo;
     return Scaffold(
       appBar: AppBar(title: Text(info.title)),
+      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

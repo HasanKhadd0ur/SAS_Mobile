@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sas_mobile/shared/constants.dart';
+import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 
 class FaqScreen extends StatefulWidget {
   const FaqScreen({super.key});
@@ -30,6 +31,7 @@ class _FaqScreenState extends State<FaqScreen> {
         title: const Text('FAQ'),
         backgroundColor: Colors.blue.shade900,
       ),
+      drawer: const AppDrawer(),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
         itemCount: _faqs.length,
