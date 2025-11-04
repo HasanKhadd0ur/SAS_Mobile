@@ -49,11 +49,7 @@ class EventApi {
       log('[EventApi] Error fetching events: $e');
       log('[EventApi] Stack trace:\n$stack');
 
-      Fluttertoast.showToast(
-        msg: "Failed to fetch events. Please check your connection.",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-      );
+      _showErrorToast('Failed to fetch events. Please check your connection.');
 
       // Return empty list instead of crashing
       return [];
@@ -68,14 +64,41 @@ class EventApi {
       log('[EventApi] Error fetching event by id: $e');
       log('[EventApi] Stack trace:\n$stack');
       
+      _showErrorToast('Failed to fetch event details.');
       
-      Fluttertoast.showToast(
-        msg: "Failed to fetch event details.",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-      );
-
-          rethrow;
+      rethrow;
     }
+  }
+
+  Future<List<Event>> getEventsByTopic(String topic) async {
+    try {
+      final response = await client.dio.get(
+        'events/by-topic',
+        queryParameters: {'topic': topic},
+      );
+      return (response.data as List).map((e) => Event.fromJson(e)).toList();
+    } catch (e) {
+      _showErrorToast('Failed to fetch events by topic');
+      return [];
+    }
+  }
+  
+  Future<String> getTodaySummary() async {
+    try {
+      final response = await client.dio.get('events/summary/today');
+      return response.data.toString();
+    } catch (e) {
+      _showErrorToast('Failed to fetch today summary');
+      return '';
+    }
+  }
+
+
+  void _showErrorToast(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 }
