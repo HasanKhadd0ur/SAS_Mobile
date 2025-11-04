@@ -67,7 +67,7 @@ flutter:
 
   assets:
     - assets/
-    - assets/images/no_events.svg
+    - assets/images/no_events.png
     - assets/logo/sas-logo.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:
