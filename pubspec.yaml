@@ -40,7 +40,9 @@ dependencies:
   json_annotation: ^4.9.0
   build_runner: ^2.4.11
   json_serializable: ^6.8.0
-
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
+  fluttertoast: ^8.2.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -65,6 +67,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/images/no_events.svg
     - assets/logo/sas-logo.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -82,7 +85,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

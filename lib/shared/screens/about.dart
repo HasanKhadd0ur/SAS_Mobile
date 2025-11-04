@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -10,6 +11,7 @@ class AboutScreen extends StatelessWidget {
         title: const Text('About SAS'),
         backgroundColor: Colors.blue.shade900,
       ),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
         child: Column(
@@ -38,7 +40,7 @@ class AboutScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             const Text(
-              'The Situational Awareness System (SAS) is a scalable, microservices-based platform designed to monitor and analyze daily and historical events on an interactive map. '
+              'The Situation Awareness System (SAS) is a scalable, microservices-based platform designed to monitor and analyze daily and historical events on an interactive map. '
               'By combining social media data scraping, event detection, geolocation inference, and real-time visualization, SAS empowers decision-makers and individuals to stay informed and aware of unfolding situations.',
               style: TextStyle(fontSize: 16, height: 1.6, color: Color(0xFF444444)),
               textAlign: TextAlign.justify,

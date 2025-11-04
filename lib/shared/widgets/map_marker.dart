@@ -1,18 +1,25 @@
-// Simple placeholder for custom marker widget or helpers
 import 'package:flutter/material.dart';
+import '../../features/events/domain/models/event.dart';
 
-class MapMarker extends StatelessWidget {
-  final String label;
-  const MapMarker({required this.label, super.key});
+class MapMarkerWidget extends StatelessWidget {
+  final Event event;
+  final VoidCallback onTap;
+
+  const MapMarkerWidget({
+    super.key,
+    required this.event,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(Icons.location_on, size: 28),
-        Text(label, style: const TextStyle(fontSize: 12)),
-      ],
+    return GestureDetector(
+      onTap: onTap,
+      child: const Icon(
+        Icons.location_on,
+        color: Colors.lightBlue,
+        size: 40,
+      ),
     );
   }
 }

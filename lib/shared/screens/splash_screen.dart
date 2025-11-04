@@ -1,5 +1,3 @@
-
-// Simple splash screen implementation
 import 'package:flutter/material.dart';
 import 'package:sas_mobile/features/events/data/event_repository.dart';
 
@@ -19,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _startUp() async {
-    // Simulate startup tasks, e.g., check token
+    // Simulate startup tasks
     await Future.delayed(const Duration(milliseconds: 1200));
 
     Navigator.pushReplacementNamed(context, '/home');
@@ -31,12 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            FlutterLogo(size: 96),
-            SizedBox(height: 16),
-            Text('SAS', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
-            Text('Situation Awareness'),
+          children: [
+            // Logo
+            Center(
+              child: Image.asset(
+                'assets/logo/sas-logo.jpg',
+                height: 150,
+                fit: BoxFit.contain,
+              ),
+            ),
+            
           ],
         ),
       ),

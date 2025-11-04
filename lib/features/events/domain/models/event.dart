@@ -68,8 +68,12 @@ class Location {
   final double latitude;
   final double longitude;
   final String? regionName;
+  final String? city;
+  final String? country;
 
   Location({
+    required this.city, 
+    required this.country, 
     required this.latitude,
     required this.longitude,
     this.regionName,

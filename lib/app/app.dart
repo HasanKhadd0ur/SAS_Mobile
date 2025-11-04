@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sas_mobile/core/config/config.dart';
+import 'package:sas_mobile/features/events/presentation/screens/map_view_screen.dart';
 import 'package:sas_mobile/shared/screens/about.dart';
 import 'package:sas_mobile/shared/screens/faq.dart';
 import 'package:sas_mobile/shared/screens/splash_screen.dart';
@@ -16,7 +17,7 @@ class SasApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // init network client
-    final eventDioClient = DioClient(baseUrl: Config.eventsServiceApiBaseUrl);
+    final eventDioClient = DioClient(baseUrl: Config.eventsServiceApiBaseUrl,);
 
     // apis and repositories
     final eventApi = EventApi(eventDioClient);
@@ -32,6 +33,7 @@ class SasApp extends StatelessWidget {
         '/home': (context) => DailyEventsScreen(eventRepository: eventRepo),
         '/about': (context) => AboutScreen(),
         '/faq': (context) => FaqScreen(),
+        '/map': (context) => MapViewScreen(eventRepository: eventRepo)
       },
     );
   }

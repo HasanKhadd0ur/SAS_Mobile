@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../../../core/network/dio_client.dart';
 import '../domain/models/event.dart';
 
@@ -8,61 +10,72 @@ class EventApi {
 
   Future<List<Event>> getEventsUpdatedAfter({
     required DateTime lastUpdate,
-    required int pageNumber,
-    required int pageSize,
+    int? pageNumber,
+    int? pageSize,
   }) async {
     final formattedTime = lastUpdate.toUtc().toIso8601String();
 
     try {
-      print('🔍 [EventApi] Fetching events updated after: $formattedTime');
-      print('📄 [EventApi] Page: $pageNumber | Size: $pageSize');
-      print('🌐 [EventApi] URL: /events/updated-after');
+
+
+      final queryParams = {
+        'lastUpdated': formattedTime,
+        if (pageNumber != null) 'pageNumber': pageNumber,
+        if (pageSize != null) 'pageSize': pageSize,
+      };
 
       final response = await client.dio.get(
         '/events/updated-after',
-        queryParameters: {
-          'lastUpdated': formattedTime,
-          'pageNumber': pageNumber,
-          'pageSize': pageSize,
-        },
+        queryParameters:queryParams
       );
 
-      print('✅ [EventApi] Response received: ${response.statusCode}');
-      print('📦 [EventApi] Raw data type: ${response.data.runtimeType}');
-
-      if (response.statusCode != 200) {
-        print('⚠️ [EventApi] Unexpected status: ${response.statusCode}');
-      }
-
       final data = response.data;
-      if (data is! List) {
-        print('❌ [EventApi] Unexpected response format: $data');
-        throw Exception('Expected a List but got ${data.runtimeType}');
-      }
 
-      final events = data.map((e) => Event.fromJson(e as Map<String, dynamic>)).toList();
-      print('✅ [EventApi] Parsed ${events.length} events');
-      return events;
-    } on Exception catch (e, stack) {
-      print('❌ [EventApi] Error loading events: $e');
-      log('Stack trace:\n$stack');
-      log('Stack trace:\n$e');
-      
-      rethrow;
+      if (data is List) {
+        return data
+            .map((e) => Event.fromJson(e as Map<String, dynamic>))
+            .toList();
+      } else if (data is Map && data.containsKey('items')) {
+
+        final items = data['items'] as List<dynamic>;
+        return items
+            .map((e) => Event.fromJson(e as Map<String, dynamic>))
+            .toList();
+      } else {
+        log('[EventApi] Unexpected data format: $data');
+        return [];
+      }
+    } catch (e, stack) {
+      log('[EventApi] Error fetching events: $e');
+      log('[EventApi] Stack trace:\n$stack');
+
+      Fluttertoast.showToast(
+        msg: "Failed to fetch events. Please check your connection.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+
+      // Return empty list instead of crashing
+      return [];
     }
   }
 
   Future<Event> getEventById(String id) async {
     try {
-      print('🔍 [EventApi] Fetching event by ID: $id');
       final response = await client.dio.get('/events/$id');
-      print('✅ [EventApi] Event fetched successfully (status ${response.statusCode})');
-      return Event.fromJson(response.data);
-    } on Exception catch (e, stack) {
-      print('❌ [EventApi] Error loading event $id: $e');
-      log('Stack trace:\n$stack');
+      return Event.fromJson(response.data as Map<String, dynamic>);
+    } catch (e, stack) {
+      log('[EventApi] Error fetching event by id: $e');
+      log('[EventApi] Stack trace:\n$stack');
       
-      rethrow;
+      
+      Fluttertoast.showToast(
+        msg: "Failed to fetch event details.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+
+          rethrow;
     }
   }
 }

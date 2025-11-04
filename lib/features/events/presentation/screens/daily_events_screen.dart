@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sas_mobile/features/events/presentation/screens/event_detail_screen.dart';
+import 'package:sas_mobile/features/events/presentation/widgets/empty_events.dart';
+import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 import '../../../../shared/widgets/loading_spinner.dart';
 import '../../domain/models/event.dart';
 import '../../data/event_repository.dart';
+import '../widgets/event_card.dart';
 
 class DailyEventsScreen extends StatefulWidget {
   final EventRepository eventRepository;
@@ -61,43 +65,43 @@ class _DailyEventsScreenState extends State<DailyEventsScreen> {
     super.dispose();
   }
 
+  String _formatDate(DateTime date) => DateFormat.yMMMd().format(date.toLocal());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Daily Events')),
-      body: _events.isEmpty && _isLoading
+      drawer: const AppDrawer(),
+      body: _isLoading && _events.isEmpty
           ? const LoadingSpinner()
-          : ListView.builder(
-              controller: _scrollController,
-              itemCount: _events.length + (_hasMore ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index == _events.length) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
+          : _events.isEmpty
+              ? const EmptyEventsWidget()
+              : RefreshIndicator(
+                  onRefresh: () async {
+                    setState(() {
+                      _events.clear();
+                      _pageNumber = 1;
+                      _hasMore = true;
+                    });
+                    await _loadNextPage();
+                  },
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    itemCount: _events.length + (_hasMore ? 1 : 0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    itemBuilder: (context, index) {
+                      if (index == _events.length) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
 
-                final e = _events[index];
-                return ListTile(
-                  leading: const Icon(Icons.public),
-                  title: Text(e.eventInfo.title),
-                  subtitle: Text(
-                    e.eventInfo.summary,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                      final e = _events[index];
+                      return EventCard(event: e, formattedDate: _formatDate(e.createdAt));
+                    },
                   ),
-                  trailing: Text(
-                    '${e.createdAt.toLocal()}'.split(' ')[0],
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => EventDetailScreen(event: e)),
-                  ),
-                );
-              },
-            ),
+                ),
     );
   }
 }
