@@ -43,6 +43,7 @@ dependencies:
   flutter_map: ^8.2.2
   latlong2: ^0.9.1
   fluttertoast: ^8.2.6
+  flutter_markdown: ^0.7.7+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
