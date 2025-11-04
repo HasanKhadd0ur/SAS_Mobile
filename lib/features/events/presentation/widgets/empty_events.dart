@@ -15,7 +15,7 @@ class EmptyEventsWidget extends StatelessWidget {
           children: [
             // Illustration
             Image.asset(
-              'assets/images/no_events.svg',
+              'assets/images/no_events.png',
               width: 180,
               height: 180,
               fit: BoxFit.contain,

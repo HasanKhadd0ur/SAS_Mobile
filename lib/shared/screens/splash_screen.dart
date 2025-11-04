@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Simulate startup tasks
     await Future.delayed(const Duration(milliseconds: 1200));
 
-    Navigator.pushReplacementNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, '/events/daily');
   }
 
   @override

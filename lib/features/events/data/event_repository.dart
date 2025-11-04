@@ -21,6 +21,12 @@ class EventRepository {
     return events;
   }
 
+
+  Future<String> getTodaySummary() async {
+    return await api.getTodaySummary();
+  }
+
+
   Future<Event> getEventById(String id) => api.getEventById(id);
 
 }

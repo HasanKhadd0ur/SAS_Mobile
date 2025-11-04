@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sas_mobile/core/navigation/app_route_info.dart';
+import 'package:sas_mobile/features/events/events_routes.dart';
+import 'package:sas_mobile/shared/shared_routes.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -7,57 +10,44 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentRoute = ModalRoute.of(context)?.settings.name;
 
+    // Collect routes from modules
+    final eventRoutes = EventsRoutes.routeInfos;
+    final sharedRoutes = SharedRoutes.routeInfos;
+
     return Drawer(
       backgroundColor: Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Center(
-                  child: Image.asset(
-                    'assets/logo/sas-logo.jpg',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ],
+            child: Center(
+              child: Image.asset(
+                'assets/logo/sas-logo.jpg',
+                fit: BoxFit.contain,
+              ),
             ),
           ),
-          _buildDrawerItem(
-            context,
-            icon: Icons.map,
-            title: 'Map View',
-            route: '/map',
-            currentRoute: currentRoute,
-          ),
-          _buildDrawerItem(
-            context,
-            icon: Icons.event_note,
-            title: 'Daily Events',
-            route: '/home',
-            currentRoute: currentRoute,
-          ),
+          ..._buildSection(context, eventRoutes, currentRoute),
           const Divider(),
-          _buildDrawerItem(
-            context,
-            icon: Icons.info_outline,
-            title: 'About',
-            route: '/about',
-            currentRoute: currentRoute,
-          ),
-          _buildDrawerItem(
-            context,
-            icon: Icons.help_outline,
-            title: 'FAQ',
-            route: '/faq',
-            currentRoute: currentRoute,
-          ),
+          ..._buildSection(context, sharedRoutes, currentRoute),
         ],
       ),
     );
+  }
+
+  List<Widget> _buildSection(
+      BuildContext context, List<AppRouteInfo> routes, String? currentRoute) {
+    return routes
+        .map(
+          (routeInfo) => _buildDrawerItem(
+            context,
+            icon: routeInfo.icon,
+            title: routeInfo.title,
+            route: routeInfo.path,
+            currentRoute: currentRoute,
+          ),
+        )
+        .toList();
   }
 
   Widget _buildDrawerItem(
@@ -84,7 +74,7 @@ class AppDrawer extends StatelessWidget {
       ),
       selected: isSelected,
       onTap: () {
-        Navigator.pop(context); // close drawer first
+        Navigator.pop(context);
         if (!isSelected) {
           Navigator.pushReplacementNamed(context, route);
         }
