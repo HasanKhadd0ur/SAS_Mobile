@@ -1,7 +1,9 @@
+import 'package:sas_mobile/features/events/domain/repositories/i_event_repository.dart';
+
 import '../domain/models/event.dart';
 import 'event_api.dart';
 
-class EventRepository {
+class EventRepository implements IEventRepository {
   final EventApi api;
   EventRepository(this.api);
 
