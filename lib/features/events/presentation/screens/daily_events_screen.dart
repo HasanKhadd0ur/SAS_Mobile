@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:sas_mobile/features/events/presentation/screens/event_detail_screen.dart';
 import 'package:sas_mobile/features/events/presentation/widgets/empty_events.dart';
 import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 import '../../../../shared/widgets/loading_spinner.dart';
