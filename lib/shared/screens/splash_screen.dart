@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sas_mobile/features/events/data/event_repository.dart';
+import 'package:sas_mobile/features/topics/domain/repositories/i_topic_repository.dart';
 
 class SplashScreen extends StatefulWidget {
   // final AuthRepository authRepository;
   final EventRepository eventRepository;
-  const SplashScreen({ required this.eventRepository, super.key});
+  final ITopicRepository topicRepository;
+
+  const SplashScreen({ required this.eventRepository, required this.topicRepository, super.key,});
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
