@@ -30,5 +30,16 @@ class EventRepository implements IEventRepository {
 
 
   Future<Event> getEventById(String id) => api.getEventById(id);
-
+   
+  Future<List<Event>> fetchEventsByTopic({
+    required String topicName,
+    int pageNumber = 1,
+    int pageSize = 10,
+  }) async {
+    return await api.getEventsByTopic(
+      topicName: topicName,
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+    );
+  }
 }

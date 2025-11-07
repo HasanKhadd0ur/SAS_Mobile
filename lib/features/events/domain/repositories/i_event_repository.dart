@@ -7,4 +7,9 @@ abstract class IEventRepository {
   Future<List<Event>> fetchDailyEvents();
   Future<Event> getEventById(String id);
   Future<String> getTodaySummary();
+  Future<List<Event>> fetchEventsByTopic({
+    required String topicName,
+    int pageNumber,
+    int pageSize,
+  });
 }
