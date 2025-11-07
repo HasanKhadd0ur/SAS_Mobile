@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../core/network/dio_client.dart';
 import '../domain/models/event.dart';
 
@@ -70,19 +69,54 @@ class EventApi {
     }
   }
 
-  Future<List<Event>> getEventsByTopic(String topic) async {
+  Future<List<Event>> getEventsByTopic({
+    required String topicName,
+    int? pageNumber,
+    int? pageSize,
+  }) async {
     try {
+      final queryParams = {
+        'topic': topicName,
+      };
+
       final response = await client.dio.get(
-        'events/by-topic',
-        queryParameters: {'topic': topic},
+        '/events/by-topic',
+        queryParameters: queryParams,
       );
-      return (response.data as List).map((e) => Event.fromJson(e)).toList();
-    } catch (e) {
-      _showErrorToast('Failed to fetch events by topic');
+
+      final data = response.data;
+      List<Event> allEvents = [];
+
+      if (data is List) {
+        allEvents = data.map((e) => Event.fromJson(e)).toList();
+      } else if (data is Map && data.containsKey('items')) {
+        final items = data['items'] as List<dynamic>;
+        allEvents = items.map((e) => Event.fromJson(e)).toList();
+      } else {
+        log('[EventApi] Unexpected data format for by-topic: $data');
+        return [];
+      }
+
+      // Client-side pagination (Backend need fix)
+      if (pageNumber != null && pageSize != null) {
+        final startIndex = (pageNumber - 1) * pageSize;
+        final endIndex = startIndex + pageSize;
+
+        // Ensure slicing does not throw errors
+        if (startIndex >= allEvents.length) return [];
+        return allEvents.sublist(startIndex, endIndex.clamp(0, allEvents.length));
+      }
+
+      // Return all if no pagination requested
+      return allEvents;
+    } catch (e, stack) {
+      log('[EventApi] Error fetching events by topic: $e');
+      log('[EventApi] Stack trace:\n$stack');
+      _showErrorToast('Failed to fetch events by topic.');
       return [];
     }
   }
-  
+
   Future<String> getTodaySummary() async {
     try {
       final response = await client.dio.get('events/summary/today');

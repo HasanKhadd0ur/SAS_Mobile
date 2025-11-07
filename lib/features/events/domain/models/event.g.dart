@@ -42,20 +42,6 @@ Map<String, dynamic> _$EventInfoToJson(EventInfo instance) => <String, dynamic>{
   'sentimentLabel': instance.sentimentLabel,
 };
 
-Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
-  id: json['id'] as String,
-  name: json['name'] as String,
-  iconUrl: json['iconUrl'] as String,
-  description: json['description'] as String,
-);
-
-Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
-  'id': instance.id,
-  'name': instance.name,
-  'iconUrl': instance.iconUrl,
-  'description': instance.description,
-};
-
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
   city: json['city'] as String?,
   country: json['country'] as String?,

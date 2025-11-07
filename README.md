@@ -30,8 +30,8 @@ sas_mobile/
 │   │   └── utils/               # Helper functions
 │   ├── features/                # Main feature modules
 │   │   └── events/              # Event feature module
-│   │       ├── data/            # Data sources (API calls, repositories)
-│   │       ├── domain/          # Domain models and entities
+│   │       ├── data/            # Data sources (API calls)
+│   │       ├── domain/          # Domain models, repositories and entities
 │   │       └── presentation/    # UI and state management (pages, widgets)
 │   ├── shared/                  # Shared widgets and components
 │   └── main.dart                # App entry point

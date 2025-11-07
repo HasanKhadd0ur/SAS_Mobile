@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sas_mobile/core/navigation/app_route_info.dart';
 import 'package:sas_mobile/features/events/events_routes.dart';
+import 'package:sas_mobile/features/topics/topics_routes.dart';
 import 'package:sas_mobile/shared/shared_routes.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -12,6 +13,7 @@ class AppDrawer extends StatelessWidget {
 
     // Collect routes from modules
     final eventRoutes = EventsRoutes.routeInfos;
+    final topicsRoutes = TopicsRoutes.routeInfos;
     final sharedRoutes = SharedRoutes.routeInfos;
 
     return Drawer(
@@ -28,6 +30,8 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ..._buildSection(context, eventRoutes, currentRoute),
+          const Divider(),
+          ..._buildSection(context, topicsRoutes, currentRoute),
           const Divider(),
           ..._buildSection(context, sharedRoutes, currentRoute),
         ],

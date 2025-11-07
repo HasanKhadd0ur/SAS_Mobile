@@ -1,7 +1,9 @@
+import 'package:sas_mobile/features/events/domain/repositories/i_event_repository.dart';
+
 import '../domain/models/event.dart';
 import 'event_api.dart';
 
-class EventRepository {
+class EventRepository implements IEventRepository {
   final EventApi api;
   EventRepository(this.api);
 
@@ -28,5 +30,16 @@ class EventRepository {
 
 
   Future<Event> getEventById(String id) => api.getEventById(id);
-
+   
+  Future<List<Event>> fetchEventsByTopic({
+    required String topicName,
+    int pageNumber = 1,
+    int pageSize = 10,
+  }) async {
+    return await api.getEventsByTopic(
+      topicName: topicName,
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+    );
+  }
 }
