@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sas_mobile/features/events/events_routes.dart';
 import 'package:sas_mobile/features/topics/domain/errors/topic_errors.dart';
 import 'package:sas_mobile/features/topics/domain/models/topic.dart';
 import 'package:sas_mobile/features/topics/domain/repositories/i_topic_repository.dart';
 import 'package:sas_mobile/features/topics/presenation/widgets/empty_topics_widget.dart';
+import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 
 class TopicsScreen extends StatefulWidget {
   final ITopicRepository topicRepository;
@@ -24,6 +26,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: const Text('Topics'),
         centerTitle: true,
@@ -49,7 +52,7 @@ class _TopicsScreenState extends State<TopicsScreen> {
             return GridView.builder(
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
                 childAspectRatio: 3 / 2.5,
@@ -75,7 +78,14 @@ class _TopicsScreenState extends State<TopicsScreen> {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () {
-          // TODO: Navigate to events by topic screen
+          Navigator.pushNamed(
+          context,
+          EventsRoutes.eventsByTopic,
+            arguments: {
+              'topicId': topic.id,
+              'topicName': topic.name,
+            },
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
