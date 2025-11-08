@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sas_mobile/shared/constants.dart';
+import 'package:sas_mobile/shared/l10n/app_localizations.dart';
+import 'package:sas_mobile/shared/l10n/app_localizations_extensions.dart';
 import 'package:sas_mobile/shared/widgets/app_drawer.dart';
 
 class FaqScreen extends StatefulWidget {
@@ -10,8 +11,6 @@ class FaqScreen extends StatefulWidget {
 }
 
 class _FaqScreenState extends State<FaqScreen> {
-  final List<Map<String, String>> _faqs = AppConstants.FAQ;
-
   final Set<int> _expandedIndexes = {};
 
   void _toggle(int index) {
@@ -26,17 +25,20 @@ class _FaqScreenState extends State<FaqScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final faqs = l10n.getFaqItems();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FAQ'),
+        title: Text(l10n.faq),
         backgroundColor: Colors.blue.shade900,
       ),
       drawer: const AppDrawer(),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-        itemCount: _faqs.length,
+        itemCount: faqs.length,
         itemBuilder: (context, i) {
-          final faq = _faqs[i];
+          final faq = faqs[i];
           final isExpanded = _expandedIndexes.contains(i);
 
           return Card(
@@ -47,7 +49,7 @@ class _FaqScreenState extends State<FaqScreen> {
             ),
             child: ExpansionTile(
               title: Text(
-                faq['question']!,
+                faq.question,
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
@@ -58,7 +60,7 @@ class _FaqScreenState extends State<FaqScreen> {
               onExpansionChanged: (_) => _toggle(i),
               children: [
                 Text(
-                  faq['answer']!,
+                  faq.answer,
                   style: const TextStyle(fontSize: 15, height: 1.6, color: Color(0xFF444444)),
                 ),
               ],

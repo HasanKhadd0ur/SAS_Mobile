@@ -1,4 +1,5 @@
 import 'app_localizations.dart';
+import '../models/faq_item.dart';
 
 /// Extension on AppLocalizations to provide dynamic key-based lookup
 extension AppLocalizationsExtensions on AppLocalizations {
@@ -19,6 +20,18 @@ extension AppLocalizationsExtensions on AppLocalizations {
 
     final getter = translations[key];
     return getter?.call(this) ?? key;
+  }
+
+  /// Returns a list of FAQ items with localized questions and answers.
+  /// This method directly accesses localization getters without using switch statements.
+  List<FaqItem> getFaqItems() {
+    return [
+      FaqItem(question: faqQuestion1, answer: faqAnswer1),
+      FaqItem(question: faqQuestion2, answer: faqAnswer2),
+      FaqItem(question: faqQuestion3, answer: faqAnswer3),
+      FaqItem(question: faqQuestion4, answer: faqAnswer4),
+      FaqItem(question: faqQuestion5, answer: faqAnswer5),
+    ];
   }
 }
 

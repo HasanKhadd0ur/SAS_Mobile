@@ -205,6 +205,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Follow system setting'**
   String get followSystemSetting;
+
+  /// About screen title
+  ///
+  /// In en, this message translates to:
+  /// **'About SAS'**
+  String get aboutScreenTitle;
+
+  /// About SAS section title
+  ///
+  /// In en, this message translates to:
+  /// **'About SAS'**
+  String get aboutSasTitle;
+
+  /// About SAS description text
+  ///
+  /// In en, this message translates to:
+  /// **'The Situation Awareness System (SAS) is a scalable, microservices-based platform designed to monitor and analyze daily and historical events on an interactive map. By combining social media data scraping, event detection, geolocation inference, and real-time visualization, SAS empowers decision-makers and individuals to stay informed and aware of unfolding situations.'**
+  String get aboutSasDescription;
+
+  /// Our Mission section title
+  ///
+  /// In en, this message translates to:
+  /// **'Our Mission'**
+  String get ourMission;
+
+  /// Mission description text
+  ///
+  /// In en, this message translates to:
+  /// **'Our mission is to deliver accurate, timely, and actionable information by leveraging artificial intelligence and deep learning. SAS enhances situational awareness, supports community resilience, and promotes informed decision-making in a rapidly evolving world.'**
+  String get missionDescription;
+
+  /// Stay aware tagline
+  ///
+  /// In en, this message translates to:
+  /// **'Stay aware. Stay informed.'**
+  String get stayAwareTagline;
+
+  /// FAQ question 1
+  ///
+  /// In en, this message translates to:
+  /// **'Why SAS?'**
+  String get faqQuestion1;
+
+  /// FAQ answer 1
+  ///
+  /// In en, this message translates to:
+  /// **'Social media has become a primary source of real-time information. SAS leverages this by continuously scraping and analyzing data from platforms like Telegram and Twitter to identify events as they unfold.'**
+  String get faqAnswer1;
+
+  /// FAQ question 2
+  ///
+  /// In en, this message translates to:
+  /// **'What is SAS?'**
+  String get faqQuestion2;
+
+  /// FAQ answer 2
+  ///
+  /// In en, this message translates to:
+  /// **'SAS (Situational Awareness System) is a scalable platform that monitors, detects, and visualizes events using social media data with AI-powered crawlers.'**
+  String get faqAnswer2;
+
+  /// FAQ question 3
+  ///
+  /// In en, this message translates to:
+  /// **'How does SAS detect events?'**
+  String get faqQuestion3;
+
+  /// FAQ answer 3
+  ///
+  /// In en, this message translates to:
+  /// **'SAS leverages deep learning models, natural language processing, and clustering techniques to identify emerging events and determine their geographic locations.'**
+  String get faqAnswer3;
+
+  /// FAQ question 4
+  ///
+  /// In en, this message translates to:
+  /// **'Who can use SAS?'**
+  String get faqQuestion4;
+
+  /// FAQ answer 4
+  ///
+  /// In en, this message translates to:
+  /// **'SAS is designed for both the public and decision-makers. General users can explore events, while authorized monitors and analysts can update and verify event details.'**
+  String get faqAnswer4;
+
+  /// FAQ question 5
+  ///
+  /// In en, this message translates to:
+  /// **'Is SAS free to use?'**
+  String get faqQuestion5;
+
+  /// FAQ answer 5
+  ///
+  /// In en, this message translates to:
+  /// **'Basic access to the daily event map is open for everyone. Advanced features such as historical data, analytics, and personalized alerts require an account.'**
+  String get faqAnswer5;
 }
 
 class _AppLocalizationsDelegate
