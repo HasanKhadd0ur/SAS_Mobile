@@ -16,8 +16,8 @@ class SharedRoutes {
   };
 
   static final List<AppRouteInfo> routeInfos = [
-    AppRouteInfo(path: about, title: 'About', icon: Icons.info_outline),
-    AppRouteInfo(path: faq, title: 'FAQ', icon: Icons.help_outline),
-    AppRouteInfo(path: settings, title: 'Settings', icon: Icons.settings_outlined),
+    AppRouteInfo(path: about, titleKey: 'about', icon: Icons.info_outline),
+    AppRouteInfo(path: faq, titleKey: 'faq', icon: Icons.help_outline),
+    AppRouteInfo(path: settings, titleKey: 'settings', icon: Icons.settings_outlined),
   ];
 }

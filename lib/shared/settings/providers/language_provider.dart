@@ -29,26 +29,3 @@ final languageProvider = NotifierProvider<LanguageNotifier, Locale>(() {
   return LanguageNotifier();
 });
 
-// Supported languages
-class AppLanguages {
-  static const List<Locale> supportedLocales = [
-    Locale('en'), // English
-    Locale('ar'), // Arabic
-  ];
-
-  static String getLanguageName(Locale locale) {
-    switch (locale.languageCode) {
-      case 'en':
-        return 'English';
-      case 'ar':
-        return 'العربية'; // Arabic
-      default:
-        return 'English';
-    }
-  }
-
-  static String getLanguageCode(Locale locale) {
-    return locale.languageCode.toUpperCase();
-  }
-}
-

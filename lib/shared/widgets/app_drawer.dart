@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sas_mobile/core/navigation/app_route_info.dart';
 import 'package:sas_mobile/features/events/events_routes.dart';
 import 'package:sas_mobile/features/topics/topics_routes.dart';
-import 'package:sas_mobile/l10n/app_localizations.dart';
+import 'package:sas_mobile/shared/l10n/app_localizations.dart';
+import 'package:sas_mobile/shared/l10n/app_localizations_extensions.dart';
 import 'package:sas_mobile/shared/shared_routes.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -51,33 +52,12 @@ class AppDrawer extends StatelessWidget {
           (routeInfo) => _buildDrawerItem(
             context,
             icon: routeInfo.icon,
-            title: _getTranslatedTitle(routeInfo.path, l10n),
+            title: l10n.getByKey(routeInfo.titleKey),
             route: routeInfo.path,
             currentRoute: currentRoute,
           ),
         )
         .toList();
-  }
-
-  String _getTranslatedTitle(String route, AppLocalizations l10n) {
-    switch (route) {
-      case EventsRoutes.mapView:
-        return l10n.mapView;
-      case EventsRoutes.dailyEvents:
-        return l10n.dailyEvents;
-      case EventsRoutes.todaySummary:
-        return l10n.todaySummary;
-      case TopicsRoutes.topics:
-        return l10n.topics;
-      case SharedRoutes.about:
-        return l10n.about;
-      case SharedRoutes.faq:
-        return l10n.faq;
-      case SharedRoutes.settings:
-        return l10n.settings;
-      default:
-        return route;
-    }
   }
 
   Widget _buildDrawerItem(

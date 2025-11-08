@@ -11,6 +11,6 @@ class TopicsRoutes {
      };
 
   static final List<AppRouteInfo> routeInfos = [
-    AppRouteInfo(path: topics, title: 'Topics', icon: Icons.topic),
+    AppRouteInfo(path: topics, titleKey: 'topics', icon: Icons.topic),
   ];
 }

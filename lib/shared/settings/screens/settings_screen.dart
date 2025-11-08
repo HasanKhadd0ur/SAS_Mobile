@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sas_mobile/l10n/app_localizations.dart';
+import 'package:sas_mobile/shared/l10n/app_localizations.dart';
+import 'package:sas_mobile/core/localisations/supported_locales.dart';
 import 'package:sas_mobile/shared/settings/providers/language_provider.dart';
 import 'package:sas_mobile/shared/settings/providers/theme_provider.dart';
 import 'package:sas_mobile/shared/widgets/app_drawer.dart';
@@ -117,14 +118,14 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   const Divider(),
-                  ...AppLanguages.supportedLocales.asMap().entries.map((entry) {
+                  ...SupportedLocales.supported.asMap().entries.map((entry) {
                     final index = entry.key;
                     final locale = entry.value;
                     return Column(
                       children: [
                         RadioListTile<Locale>(
-                          title: Text(AppLanguages.getLanguageName(locale)),
-                          subtitle: Text(AppLanguages.getLanguageCode(locale)),
+                          title: Text(SupportedLocales.getLanguageName(locale)),
+                          subtitle: Text(SupportedLocales.getLanguageCode(locale)),
                           value: locale,
                           groupValue: currentLocale,
                           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -134,7 +135,7 @@ class SettingsScreen extends ConsumerWidget {
                             }
                           },
                         ),
-                        if (index < AppLanguages.supportedLocales.length - 1)
+                        if (index < SupportedLocales.supported.length - 1)
                           const Divider(height: 1),
                       ],
                     );

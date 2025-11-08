@@ -33,8 +33,8 @@ class EventsRoutes {
       };
 
   static final List<AppRouteInfo> routeInfos = [
-    AppRouteInfo(path: mapView, title: 'Map View', icon: Icons.map),
-    AppRouteInfo(path: dailyEvents, title: 'Daily Events', icon: Icons.event_note),
-    AppRouteInfo(path: todaySummary, title: 'Today Summary', icon: Icons.summarize),
+    AppRouteInfo(path: mapView, titleKey: 'mapView', icon: Icons.map),
+    AppRouteInfo(path: dailyEvents, titleKey: 'dailyEvents', icon: Icons.event_note),
+    AppRouteInfo(path: todaySummary, titleKey: 'todaySummary', icon: Icons.summarize),
   ];
 }

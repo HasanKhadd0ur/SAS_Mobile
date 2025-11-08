@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sas_mobile/core/config/config.dart';
+import 'package:sas_mobile/core/localisations/supported_locales.dart';
 import 'package:sas_mobile/features/events/events_routes.dart';
 import 'package:sas_mobile/features/topics/data/topic_api.dart';
 import 'package:sas_mobile/features/topics/data/topic_repository.dart';
 import 'package:sas_mobile/features/topics/topics_routes.dart';
-import 'package:sas_mobile/l10n/app_localizations.dart';
+import 'package:sas_mobile/shared/l10n/app_localizations.dart';
 import 'package:sas_mobile/shared/screens/splash_screen.dart';
 import 'package:sas_mobile/shared/shared_routes.dart';
 import 'package:sas_mobile/shared/settings/providers/language_provider.dart';
@@ -42,7 +43,7 @@ class SasApp extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode.flutterThemeMode,
       locale: locale,
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: SupportedLocales.supported,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
