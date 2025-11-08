@@ -1,0 +1,22 @@
+{
+  "@@locale": "ar",
+  "appName": "SAS",
+  "mapView": "عرض الخريطة",
+  "dailyEvents": "الأحداث اليومية",
+  "todaySummary": "ملخص اليوم",
+  "topics": "المواضيع",
+  "about": "حول",
+  "faq": "الأسئلة الشائعة",
+  "settings": "الإعدادات",
+  "theme": "المظهر",
+  "language": "اللغة",
+  "chooseThemeMode": "اختر وضع المظهر المفضل لديك",
+  "selectLanguage": "اختر اللغة المفضلة لديك",
+  "light": "فاتح",
+  "dark": "داكن",
+  "system": "النظام",
+  "useLightTheme": "استخدام المظهر الفاتح",
+  "useDarkTheme": "استخدام المظهر الداكن",
+  "followSystemSetting": "اتباع إعدادات النظام"
+}
+

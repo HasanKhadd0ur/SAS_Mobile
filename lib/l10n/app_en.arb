@@ -1,0 +1,76 @@
+{
+  "@@locale": "en",
+  "appName": "SAS",
+  "@appName": {
+    "description": "The application name"
+  },
+  "mapView": "Map View",
+  "@mapView": {
+    "description": "Map view menu item"
+  },
+  "dailyEvents": "Daily Events",
+  "@dailyEvents": {
+    "description": "Daily events menu item"
+  },
+  "todaySummary": "Today Summary",
+  "@todaySummary": {
+    "description": "Today summary menu item"
+  },
+  "topics": "Topics",
+  "@topics": {
+    "description": "Topics menu item"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About menu item"
+  },
+  "faq": "FAQ",
+  "@faq": {
+    "description": "FAQ menu item"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings menu item"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme settings section title"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language settings section title"
+  },
+  "chooseThemeMode": "Choose your preferred theme mode",
+  "@chooseThemeMode": {
+    "description": "Theme selection description"
+  },
+  "selectLanguage": "Select your preferred language",
+  "@selectLanguage": {
+    "description": "Language selection description"
+  },
+  "light": "Light",
+  "@light": {
+    "description": "Light theme option"
+  },
+  "dark": "Dark",
+  "@dark": {
+    "description": "Dark theme option"
+  },
+  "system": "System",
+  "@system": {
+    "description": "System theme option"
+  },
+  "useLightTheme": "Use light theme",
+  "@useLightTheme": {
+    "description": "Light theme description"
+  },
+  "useDarkTheme": "Use dark theme",
+  "@useDarkTheme": {
+    "description": "Dark theme description"
+  },
+  "followSystemSetting": "Follow system setting",
+  "@followSystemSetting": {
+    "description": "System theme description"
+  }
+}
+
